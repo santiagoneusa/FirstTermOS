@@ -35,3 +35,9 @@
 archivo.txt
 COD.jpg
 PITCH.pdf
+
+# Bin directory
+**/bin/*
+
+# VScode
+**/.vscode/*
