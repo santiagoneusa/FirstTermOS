@@ -11,57 +11,90 @@ Una herramienta simple de línea de comandos para encriptar y desencriptar archi
 
 ## Requisitos
 
-- Compilador C++ (g++ recomendado)
+- Compilador de C++ (g++ recomendado)
 - Sistema operativo compatible con POSIX (Linux/Unix)
 - Make (opcional, para compilación automatizada)
 
 ## Instalación
 
 1. Clona el repositorio:
-```bash
-git clone https://github.com/santiagoneusa/FirstTermOS.git
-cd file-encryption
-```
+    ```
+    git clone https://github.com/santiagoneusa/FirstTermOS.git
+    ```
+2. Entra a la nueva capeta que se creó:
+    ```
+    cd FirstTermOS
+    ```
 
-## Manual Compilation
-1. Create a bin dir:
+## Compilación
+### Compilación Manual
+1. Crea una carpeta `bin` donde va a quedar el ejecutable del programa:
     ```
     mkdir bin
     ```
-2. Compile:
+2. Ejecuta el siguiente comando para compilar todo el código:
     ```
-    g++ -I./include -o bin/compress src/main.cpp src/arg_parser.cpp src/encryption.cpp
+    g++ -I./include -o bin/encrypt src/main.cpp src/arg_parser.cpp src/encryption.cpp
     ```
-3. Run:
+3. Hacer que el programa sea una función del sistema operativo (dos alternativas):
+    
+    3.1. Modificar la variable de ambiente `PATH`:
     ```
-    ./bin/compress -h
+    export PATH=$FIRST_TERM_OS/bin:$PATH
+    ```
+    Donde `$FIRST_TERM_OS` hace referencia a la ruta del directorio creado al hacer `git clone`.
+
+    3.2. Crear un enlace simbolico (requiere permisos de superusuario):
+    ```
+    sudo ln -s $(pwd)/bin/encrypt /usr/local/bin/encrypt
+    ```
+4. Ejecuta el código:
+    ```
+    encrypt -h
+    ```
+
+### Compilación Automatizada
+1. Ejecuta el siguiente comando que se va a encargar de compilar todo el programa:
+    ```
+    make
+    ```
+2. Hacer que el programa sea una función del sistema operativo (con permisos de superusuario):
+    ```
+    make install
+    ```
+    Si no cuentas con permisos de superusuario ve a la sección 3.2 de [Compilación Manual](#compilación-manual) y sigue ese paso.
+3. Ejecuta el código:
+    ```
+    encrypt -h
     ```
 
 ## Uso
 
 La herramienta soporta los siguientes comandos:
 
-```bash
+```
 # Mostrar ayuda
-./encrypt -h
-./encrypt --help
+encrypt -h, --help
 
 # Mostrar versión
-./encrypt -v
-./encrypt --version
+encrypt -v, --version
 
 # Encriptar un archivo
-./encrypt -e archivo.txt
-# Resultado: archivo.txt.encrypted
+encrypt -e, --encrypt <archivo_original> [archivo_salida]
+# Resultado: archivo_salida o archivo_original.encrypted
 
 # Desencriptar un archivo
-./encrypt -d archivo.txt.encrypted
+encrypt -d, decrypt <archivo_encriptado> [archivo_salida]
 # Resultado: archivo.txt.encrypted.decrypted
 ```
 
 ## Estructura del Proyecto
 
 ```
+include/
+├── arg_parser.h          
+├── encryption.h
+README.md
 src/
 ├── arg_parser.cpp          
 ├── encryption.cpp        
@@ -82,11 +115,10 @@ Esta herramienta es para propósitos educativos y de demostración. No se recomi
 - La clave de encriptación es fija y está en el código
 - No implementa verificación de integridad
 
-
 ## Autores
 
-- Juan Manuel Gomez Piedrahita
+- Juan Manuel Gómez Piedrahita
 - Luisa María Álvarez García
 - Miguel Ángel Hoyos
-- Santiago Neusa
+- Santiago Neusa Ruiz
 - Sebastián Restrepo Ortiz

@@ -12,7 +12,7 @@ OBJ_DIR = obj
 # Source and object files
 SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
-TARGET = $(BIN_DIR)/compress
+TARGET = $(BIN_DIR)/encrypt
 
 # Main rule
 all: $(TARGET)
@@ -37,3 +37,12 @@ clean:
 # Run rule
 run: $(TARGET)
 	./$(TARGET)
+
+# Install rule
+install: $(TARGET)
+	sudo cp $(TARGET) /usr/local/bin/encrypt
+	sudo chmod +x /usr/local/bin/encrypt
+
+# Uninstall rule
+uninstall:
+	sudo rm -f /usr/local/bin/encrypt
