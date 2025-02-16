@@ -23,10 +23,19 @@ git clone https://github.com/santiagoneusa/FirstTermOS.git
 cd file-encryption
 ```
 
-2. Compila el proyecto:
-```bash
-g++ -o encrypt main.cpp
-```
+## Manual Compilation
+1. Create a bin dir:
+    ```
+    mkdir bin
+    ```
+2. Compile:
+    ```
+    g++ -I./include -o bin/compress src/main.cpp src/arg_parser.cpp src/encryption.cpp
+    ```
+3. Run:
+    ```
+    ./bin/compress -h
+    ```
 
 ## Uso
 
@@ -53,11 +62,10 @@ La herramienta soporta los siguientes comandos:
 ## Estructura del Proyecto
 
 ```
-file-encryption/
-├── main.cpp           # Código fuente principal
-├── compress.h         # Archivo de cabecera
-├── README.md         # Este archivo
-└── LICENSE           # Licencia del proyecto
+src/
+├── arg_parser.cpp          
+├── encryption.cpp        
+├── main.cpp       
 ```
 
 ## Cómo Funciona
