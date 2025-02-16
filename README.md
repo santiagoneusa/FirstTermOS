@@ -85,7 +85,7 @@ encrypt -e, --encrypt <archivo_original> [archivo_salida]
 
 # Desencriptar un archivo
 encrypt -d, decrypt <archivo_encriptado> [archivo_salida]
-# Resultado: archivo.txt.encrypted.decrypted
+# Resultado: archivo_salida o archivo_encriptad.decrypted
 ```
 
 ## Estructura del Proyecto
